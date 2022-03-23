@@ -1,5 +1,6 @@
 import { NavTabProps } from "./types";
 import { StyledNavTab, Text } from "./styles";
+import { useNavigation } from "../NavigationContext";
 
 const NavTab = ({
   selectable = false,

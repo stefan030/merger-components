@@ -14,9 +14,11 @@ export const StyledNavButton = styled.button<NavButtonProps>`
   cursor: pointer;
   color: ${theme.colors.text.primary.primary};
   position: relative;
-  border: none;
+  border: 0;
   outline: 0;
   background: none;
+  padding: 0 0.125rem;
+  /* border: ${theme.borders.widths.m} solid transparent; */
 
   // Resting (Hover)
   &:hover {
@@ -24,7 +26,7 @@ export const StyledNavButton = styled.button<NavButtonProps>`
       &:after {
         content: "";
         position: absolute;
-        bottom: 0;
+        bottom: -${theme.borders.widths.m};
         left: 0;
         right: 0;
         background: ${theme.colors.surface.tertiary};
@@ -37,13 +39,12 @@ export const StyledNavButton = styled.button<NavButtonProps>`
   // Pressed (Active)
   &:active {
     color: ${theme.colors.text.secondary.primary};
-    border: 2px solid ${theme.colors.secondary.main};
 
     & > span {
       &:after {
         content: "";
         position: absolute;
-        bottom: 0;
+        bottom: -${theme.borders.widths.m};
         left: 0;
         right: 0;
         background: ${theme.colors.secondary.main};
@@ -53,9 +54,20 @@ export const StyledNavButton = styled.button<NavButtonProps>`
     }
   }
 
-  &:focus {
-    border: 2px solid ${theme.colors.secondary.main};
+  // Remove persistent focus on mouse click
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: ${theme.borders.widths.m} solid ${theme.colors.secondary.main};
     color: ${theme.colors.text.secondary.primary};
+
+    & > span {
+      &:after {
+        background: transparent;
+      }
+    }
   }
 
   /* Primary Light  */

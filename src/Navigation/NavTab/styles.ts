@@ -12,7 +12,7 @@ export const NavTabContainer = styled.div`
 export const StyledNavTab = styled.button<NavTabProps>`
   align-items: center;
   border-radius: ${theme.radii.m};
-  border: 1px solid transparent;
+  border: ${theme.borders.widths.s} solid transparent;
   color: ${theme.colors.text.light.primary};
   cursor: pointer;
   display: flex;
@@ -20,8 +20,8 @@ export const StyledNavTab = styled.button<NavTabProps>`
   justify-content: center;
   line-height: normal;
   max-width: 100%;
-  padding: 0.375rem 0.5rem;
   background: none;
+  outline: 0;
 
   ${({ selectable, selected }) =>
     selectable &&
@@ -31,7 +31,16 @@ export const StyledNavTab = styled.button<NavTabProps>`
         color: ${theme.colors.text.light.primary};
       }
 
-      &:focus,
+      // Remove persistent focus on mouse click
+      &:focus:not(:focus-visible) {
+        outline: none;
+      }
+
+      &:focus-visible {
+        border: ${theme.borders.widths.s} solid ${theme.colors.secondary.main};
+        color: ${theme.colors.text.secondary.primary};
+      }
+
       &:active {
         border: ${theme.borders.widths.s} solid ${theme.colors.secondary.main};
         color: ${theme.colors.text.secondary.primary};
@@ -42,8 +51,7 @@ export const StyledNavTab = styled.button<NavTabProps>`
         border: ${theme.borders.widths.s} solid ${theme.colors.surface.primary};
         color: ${theme.colors.text.light.primary};
 
-        &:hover,
-        &:focus {
+        &:hover {
           border: ${theme.borders.widths.s} solid
             ${theme.colors.surface.primary};
           color: ${theme.colors.text.light.primary};
@@ -56,6 +64,11 @@ export const StyledNavTab = styled.button<NavTabProps>`
     css`
       color: ${theme.colors.text.dark.disabled};
       cursor: not-allowed;
+
+      &:hover {
+        border: none;
+        color: ${theme.colors.text.dark.disabled};
+      }
     `}
 `;
 

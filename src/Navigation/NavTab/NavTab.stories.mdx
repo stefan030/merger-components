@@ -1,0 +1,29 @@
+<!-- NavTab.stories.mdx -->
+
+import { Meta, Story } from "@storybook/addon-docs";
+import { theme } from "@dfds-ui/theme";
+import NavTab from "./NavTab";
+
+<Meta title="NavTab" component={NavTab} />
+
+# NavTab
+
+<Story
+  name="Primary"
+  title="Button"
+  parameters={{
+    backgrounds: {
+      default: "Tertiary surface",
+      values: [
+        { name: "Tertiary surface", value: `${theme.colors.surface.tertiary}` },
+        { name: "Primary surface", value: `${theme.colors.surface.primary}` },
+      ],
+    },
+  }}
+>
+  <div>
+    <NavTab selectable selected>
+      Nav tab
+    </NavTab>
+  </div>
+</Story>
